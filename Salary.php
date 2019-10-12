@@ -11,12 +11,12 @@ class salary{
     /**
      * @return array
      */
-    function getSalaryDates(){
+    function getSalaryDates( $year ){
 
         $totalMonths = 12;
         $yearlyDetails = [];
         for( $currentMonth = 1; $currentMonth <= $totalMonths; $currentMonth++ ){
-            $yearlyDetails[] = $this->getSalaryDate( $currentMonth ) + $this->getBonusDate( $currentMonth );
+            $yearlyDetails[] = $this->getSalaryDate( $currentMonth, $year ) + $this->getBonusDate( $currentMonth, $year );
         }
 
         return $yearlyDetails;
@@ -27,11 +27,11 @@ class salary{
      * @param $currentMonth
      * @return array
      */
-    function getSalaryDate( $currentMonth ){
+    function getSalaryDate( $currentMonth, $year ){
 
         $monthlyDetails = [];
 
-        $lastDateOfMonth = date('Y-m-t',mktime(null, null, null, $currentMonth, 1, $this->currentYear));
+        $lastDateOfMonth = date('Y-m-t',mktime(null, null, null, $currentMonth, 1, $year));
         $lastDayOfMonth = date('D', strtotime($lastDateOfMonth));
 
         while (in_array($lastDayOfMonth, $this->weekends)) {
@@ -53,11 +53,11 @@ class salary{
      * @param $currentMonth
      * @return array
      */
-    function getBonusDate( $currentMonth ){
+    function getBonusDate( $currentMonth, $year ){
 
         $bonusDetails = [];
 
-        $bonusDate = date('Y-m-d',mktime(null, null, null, $currentMonth, 15, $this->currentYear));
+        $bonusDate = date('Y-m-d',mktime(null, null, null, $currentMonth, 15, $year));
         $bonusDay = date('D', strtotime($bonusDate));
 
         while (in_array($bonusDay, $this->weekends)) {

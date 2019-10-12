@@ -12,11 +12,5 @@ class File{
         }
 
         fclose($file);
-
-        header('Content-Type: application/csv; charset=UTF-8');
-        header("Content-Disposition: attachment; filename=tmp.csv");
-
-        exit();
-
     }
 }
