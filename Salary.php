@@ -1,73 +1,79 @@
 <?php
 
+/**
+ * Class salary
+ */
 class salary{
 
-    function getSalaryData(){
+    public $currentYear = 2019;
+    public $weekends = ['Sat', 'Sun'];
 
-        $intCurrentYear = 2019;
-        $stringYearlyData = [];
+    /**
+     * @return array
+     */
+    function getSalaryDates(){
 
-
-        for($intCurrentMonth = 1; $intCurrentMonth <= 12; $intCurrentMonth++){
-
-            $stringYearlyData[] = $this->getSalaryDate( $intCurrentMonth, $intCurrentYear ) + $this->getBonusDate( $intCurrentMonth, $intCurrentYear );
-
+        $totalMonths = 12;
+        $yearlyDetails = [];
+        for( $currentMonth = 1; $currentMonth <= $totalMonths; $currentMonth++ ){
+            $yearlyDetails[] = $this->getSalaryDate( $currentMonth ) + $this->getBonusDate( $currentMonth );
         }
 
-        return $stringYearlyData;
+        return $yearlyDetails;
 
     }
 
-    function getSalaryDate( $intCurrentMonth, $intCurrentYear ){
+    /**
+     * @param $currentMonth
+     * @return array
+     */
+    function getSalaryDate( $currentMonth ){
 
-        $arrStringWeekends = ['Sat', 'Sun'];
-        $stringMonthlyData = [];
+        $monthlyDetails = [];
 
-        $stringLastDateOfMonth = date('Y-m-t',mktime(null, null, null, $intCurrentMonth, 1, $intCurrentYear));
-        $stringLastDayOfMonth = date('D', strtotime($stringLastDateOfMonth));
+        $lastDateOfMonth = date('Y-m-t',mktime(null, null, null, $currentMonth, 1, $this->currentYear));
+        $lastDayOfMonth = date('D', strtotime($lastDateOfMonth));
 
-        while (in_array($stringLastDayOfMonth, $arrStringWeekends)) {
+        while (in_array($lastDayOfMonth, $this->weekends)) {
 
-            $stringLastDateOfMonth = date('Y-m-d', strtotime('-1 day', strtotime($stringLastDateOfMonth)));
-            $stringLastDayOfMonth = date('D', strtotime($stringLastDateOfMonth));
+            $lastDateOfMonth = date('Y-m-d', strtotime('-1 day', strtotime($lastDateOfMonth)));
+            $lastDayOfMonth = date('D', strtotime($lastDateOfMonth));
         }
 
 
-        $stringMonthlyData['Month'] = date("F", mktime(null, null, null, $intCurrentMonth));
-        $stringMonthlyData['Salary Date'] = $stringLastDateOfMonth;
-        $stringMonthlyData['Salary Day'] = $stringLastDayOfMonth;
+        $monthlyDetails['Month'] = date("F", mktime(null, null, null, $currentMonth));
+        $monthlyDetails['Salary Date'] = $lastDateOfMonth;
+        $monthlyDetails['Salary Day'] = $lastDayOfMonth;
 
-        return $stringMonthlyData;
+        return $monthlyDetails;
     }
 
 
-    function getBonusDate( $intCurrentMonth, $intCurrentYear ){
+    /**
+     * @param $currentMonth
+     * @return array
+     */
+    function getBonusDate( $currentMonth ){
 
-        $arrStringWeekends = ['Sat', 'Sun'];
-        $arrBonusData = [];
+        $bonusDetails = [];
 
+        $bonusDate = date('Y-m-d',mktime(null, null, null, $currentMonth, 15, $this->currentYear));
+        $bonusDay = date('D', strtotime($bonusDate));
 
-        $stringBonusDate = date('Y-m-d',mktime(null, null, null, $intCurrentMonth, 15, $intCurrentYear));
-        $stringBonusDay = date('D', strtotime($stringBonusDate));
+        while (in_array($bonusDay, $this->weekends)) {
 
-        while (in_array($stringBonusDay, $arrStringWeekends)) {
-
-            $stringBonusDay = date('D', strtotime('+1 day', strtotime($stringBonusDate)));
-
-            while( $stringBonusDay != 'Wed' ){
-                $stringBonusDate = date('Y-m-d', strtotime('+1 day', strtotime($stringBonusDate)));
-                $stringBonusDay = date('D', strtotime(  $stringBonusDate ) );
+            $bonusDay = date('D', strtotime('+1 day', strtotime($bonusDate)));
+            while( $bonusDay != 'Wed' ){
+                $bonusDate = date('Y-m-d', strtotime('+1 day', strtotime($bonusDate)));
+                $bonusDay = date('D', strtotime(  $bonusDate ) );
             }
-
         }
 
-        $arrBonusData['Bonus Date'] = $stringBonusDate;
-        $arrBonusData['Bonus day'] = $stringBonusDay;
+        $bonusDetails['Bonus Date'] = $bonusDate;
+        $bonusDetails['Bonus day'] = $bonusDay;
 
-
-        return $arrBonusData;
+        return $bonusDetails;
 
     }
-
 }
 

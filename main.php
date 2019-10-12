@@ -1,10 +1,10 @@
 <?php
 
-require_once('Salary.php');
-require_once('File.php');
+require_once( 'Salary.php' );
+require_once( 'File.php' );
 
 $salary = new Salary();
-$arrSalaryData = $salary->getSalaryData();
+$SalaryDetails = $salary->getSalaryDates();
 
 $file = new File();
-$file->createCSV( $arrSalaryData );
+$file->createCSV( $SalaryDetails );
