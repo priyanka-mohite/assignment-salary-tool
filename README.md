@@ -1,4 +1,4 @@
-Program for getting salary dates 
+#Program for getting salary dates 
 
 Input : 
 
@@ -10,9 +10,7 @@ Output :
 
          Bonus dates (Specific day in each month)
 
-How to execute 
-
-I] From console 
+#How to execute from console 
 
 Execute command : 
 
