@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Uhc_Admin>
+            <version>0.1.0</version>
+        </Uhc_Admin>
+    </modules>
+    <admin>
+        <routers>
+			<admin>
+				<use>admin</use>
+				<args>
+					<module>Uhc_Admin</module>
+					<frontName>admin</frontName>
+				</args>
+			</admin>
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			<admin module="admin">
+				<title>Regionmapping</title>
+				<sort_order>71</sort_order>               
+				<children>
+					<items module="admin">
+						<title>Manage Items</title>
+						<sort_order>0</sort_order>
+						<action>admin/regionmapping</action>
+					</items>
+				</children>
+			</admin>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<Uhc_Admin>
+							<title>Regionmapping Module</title>
+							<sort_order>10</sort_order>
+						</Uhc_Admin>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<admin>
+					<file>admin.xml</file>
+				</admin>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+		<blocks>
+			<admin>
+				<class>Uhc_Admin_Block</class>
+			</admin>
+		</blocks>
+		<helpers>
+			<admin>
+				<class>Uhc_Admin_Helper</class>
+			</admin>
+		</helpers>
+    </global>
+</config>

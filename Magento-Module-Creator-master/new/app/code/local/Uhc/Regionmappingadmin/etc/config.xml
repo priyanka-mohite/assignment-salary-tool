@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Uhc_Regionmappingadmin>
+            <version>0.1.0</version>
+        </Uhc_Regionmappingadmin>
+    </modules>
+    <admin>
+        <routers>
+			<regionmappingadmin>
+				<use>admin</use>
+				<args>
+					<module>Uhc_Regionmappingadmin</module>
+					<frontName>regionmappingadmin</frontName>
+				</args>
+			</regionmappingadmin>
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			<regionmappingadmin module="regionmappingadmin">
+				<title>Regionmapping</title>
+				<sort_order>71</sort_order>               
+				<children>
+					<items module="regionmappingadmin">
+						<title>Manage Items</title>
+						<sort_order>0</sort_order>
+						<action>regionmappingadmin/regionmapping</action>
+					</items>
+				</children>
+			</regionmappingadmin>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<Uhc_Regionmappingadmin>
+							<title>Regionmapping Module</title>
+							<sort_order>10</sort_order>
+						</Uhc_Regionmappingadmin>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<regionmappingadmin>
+					<file>regionmappingadmin.xml</file>
+				</regionmappingadmin>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+		<blocks>
+			<regionmappingadmin>
+				<class>Uhc_Regionmappingadmin_Block</class>
+			</regionmappingadmin>
+		</blocks>
+		<helpers>
+			<regionmappingadmin>
+				<class>Uhc_Regionmappingadmin_Helper</class>
+			</regionmappingadmin>
+		</helpers>
+    </global>
+</config>

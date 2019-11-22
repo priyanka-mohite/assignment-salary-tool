@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <regionmapping_adminhtml_regionmapping_index>
+        <reference name="content">
+            <block type="regionmapping/adminhtml_regionmapping" name="regionmapping" />
+        </reference>
+    </regionmapping_adminhtml_regionmapping_index>
+</layout>

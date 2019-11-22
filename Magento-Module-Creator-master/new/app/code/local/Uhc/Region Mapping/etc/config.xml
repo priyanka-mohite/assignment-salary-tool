@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Uhc_Region Mapping>
+            <version>0.1.0</version>
+        </Uhc_Region Mapping>
+    </modules>
+    <frontend>
+        <routers>
+            <region mapping>
+                <use>standard</use>
+                <args>
+                    <module>Uhc_Region Mapping</module>
+                    <frontName>region mapping</frontName>
+                </args>
+            </region mapping>
+        </routers>
+        <layout>
+            <updates>
+                <region mapping>
+                    <file>region mapping.xml</file>
+                </region mapping>
+            </updates>
+        </layout>
+    </frontend>
+    <global>
+        <models>
+            <region mapping>
+                <class>Uhc_Region Mapping_Model</class>
+                <resourceModel>region mapping_mysql4</resourceModel>
+            </region mapping>
+            <region mapping_mysql4>
+                <class>Uhc_Region Mapping_Model_Mysql4</class>
+                <entities>
+                    <region mapping>
+                        <table>region mapping</table>
+                    </region mapping>
+                </entities>
+            </region mapping_mysql4>
+        </models>
+        <resources>
+            <region mapping_setup>
+                <setup>
+                    <module>Uhc_Region Mapping</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </region mapping_setup>
+            <region mapping_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </region mapping_write>
+            <region mapping_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </region mapping_read>
+        </resources>
+        <blocks>
+            <region mapping>
+                <class>Uhc_Region Mapping_Block</class>
+            </region mapping>
+        </blocks>
+        <helpers>
+            <region mapping>
+                <class>Uhc_Region Mapping_Helper</class>
+            </region mapping>
+        </helpers>
+    </global>
+</config>

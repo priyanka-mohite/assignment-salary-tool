@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+    </default>
+    <region mapping_index_index>
+        <reference name="content">
+            <block type="region mapping/region mapping" name="region mapping" template="region mapping/region mapping.phtml" />
+        </reference>
+    </region mapping_index_index>
+</layout> 

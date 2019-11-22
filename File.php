@@ -2,6 +2,9 @@
 
 class File{
 
+    /**
+     * @param $arrData
+     */
     function createCSV( $arrData ){
 
         $file = fopen("tmp.csv", "w");
